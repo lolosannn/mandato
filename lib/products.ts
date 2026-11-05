@@ -3,17 +3,17 @@
 // Reemplazarlos por los reales antes de publicar. Para agregar fotos, subirlas a
 // /public/productos/ y poner la ruta en `images` (ej: "/productos/traje-azul-1.jpg").
 
-export type CategoryId = "trajes" | "sacos" | "chalecos" | "pantalones" | "camisas" | "zapatillas" | "accesorios";
+export type CategoryId = "trajes" | "sacos" | "chalecos" | "pantalones" | "camisas" | "calzado" | "accesorios";
 
 export type CategoryGroup = "Sastrería" | "Camisería" | "Calzado" | "Accesorios";
 
 export const CATEGORIES: { id: CategoryId; name: string; description: string; group: CategoryGroup }[] = [
   { id: "trajes", name: "Trajes", description: "Slim fit, clásicos y de tres piezas. Venta y alquiler.", group: "Sastrería" },
   { id: "sacos", name: "Sacos y blazers", description: "Para el día a día o un evento.", group: "Sastrería" },
-  { id: "chalecos", name: "Chalecos", description: "El toque formal que eleva cualquier look.", group: "Sastrería" },
-  { id: "pantalones", name: "Pantalones", description: "De vestir y chinos, con calce perfecto.", group: "Sastrería" },
-  { id: "zapatillas", name: "Zapatillas", description: "Cuero y diseño urbano para combinar con traje.", group: "Calzado" },
   { id: "camisas", name: "Camisas", description: "De vestir, lisas y con textura.", group: "Camisería" },
+  { id: "pantalones", name: "Pantalones", description: "De vestir y chinos, con calce perfecto.", group: "Sastrería" },
+  { id: "calzado", name: "Zapatos y zapatillas", description: "Zapatos de vestir y zapatillas de cuero para combinar con traje.", group: "Calzado" },
+  { id: "chalecos", name: "Chalecos", description: "El toque formal que eleva cualquier look.", group: "Sastrería" },
   { id: "accesorios", name: "Corbatas y accesorios", description: "Corbatas, moños, cinturones, gemelos y pañuelos.", group: "Accesorios" },
 ];
 
@@ -328,9 +328,25 @@ export const PRODUCTS: Product[] = [
     pairsWith: ["saco-azul-marino", "zapatillas-cuero-blancas"],
   },
   {
+    slug: "zapatos-oxford-negros",
+    name: "Zapatos Oxford de Cuero Negros",
+    category: "calzado",
+    price: 159000,
+    colors: [
+      { name: "Negro", hex: "#111111" },
+      { name: "Marrón", hex: "#5A3A22" },
+    ],
+    sizes: SHOE_SIZES,
+    description: "El zapato de vestir por excelencia. Cuero liso, puntera redondeada y suela de cuero.",
+    details: ["Capellada de cuero vacuno", "Suela de cuero con taco de goma", "Forrería de cuero"],
+    weightKg: 1.3,
+    images: [],
+    pairsWith: ["traje-clasico-negro", "cinturon-cuero-negro"],
+  },
+  {
     slug: "zapatillas-cuero-blancas",
     name: "Zapatillas de Cuero Blancas",
-    category: "zapatillas",
+    category: "calzado",
     price: 145000,
     colors: [{ name: "Blanco", hex: "#F2F0EB" }],
     sizes: SHOE_SIZES,
@@ -345,7 +361,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "zapatillas-cuero-negras",
     name: "Zapatillas de Cuero Negras",
-    category: "zapatillas",
+    category: "calzado",
     price: 145000,
     colors: [{ name: "Negro", hex: "#111111" }],
     sizes: SHOE_SIZES,

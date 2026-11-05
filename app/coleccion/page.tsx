@@ -4,7 +4,7 @@ import { CollectionGrid } from "@/components/CollectionGrid";
 
 export const metadata: Metadata = {
   title: "Colección",
-  description: "Trajes, sacos, chalecos, pantalones, zapatillas, camisas, corbatas y accesorios de moda masculina premium.",
+  description: "Trajes, sacos, camisas, pantalones, zapatos, zapatillas, chalecos, corbatas y accesorios de moda masculina premium.",
 };
 
 export default function Coleccion() {

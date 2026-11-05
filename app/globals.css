@@ -2149,7 +2149,7 @@ details.acc ul {
   grid-column: span 2;
   grid-row: span 2;
 }
-.bento-camisas,
+.bento-chalecos,
 .bento-accesorios {
   grid-column: span 2;
 }
@@ -2318,7 +2318,7 @@ details.acc ul {
     grid-row: span 1;
     min-height: 300px;
   }
-  .bento-camisas,
+  .bento-chalecos,
   .bento-accesorios {
     grid-column: span 1;
   }
@@ -2357,9 +2357,9 @@ details.acc ul {
 /* Distribución fija de la colección (sin huecos) */
 .bento {
   grid-template-areas:
-    "trajes trajes sacos chalecos"
-    "trajes trajes pantalones zapatillas"
-    "camisas camisas accesorios accesorios";
+    "trajes trajes sacos camisas"
+    "trajes trajes pantalones calzado"
+    "chalecos chalecos accesorios accesorios";
   grid-template-rows: repeat(3, 250px);
   grid-auto-rows: auto;
 }
@@ -2367,16 +2367,16 @@ details.acc ul {
 .bento-sacos { grid-area: sacos; }
 .bento-chalecos { grid-area: chalecos; }
 .bento-pantalones { grid-area: pantalones; }
-.bento-zapatillas { grid-area: zapatillas; }
+.bento-calzado { grid-area: calzado; }
 .bento-camisas { grid-area: camisas; }
 .bento-accesorios { grid-area: accesorios; }
 @media (max-width: 960px) {
   .bento {
     grid-template-areas:
       "trajes trajes"
-      "sacos chalecos"
-      "pantalones zapatillas"
-      "camisas accesorios";
+      "sacos camisas"
+      "pantalones calzado"
+      "chalecos accesorios";
     grid-template-rows: 300px repeat(3, 210px);
   }
   .bento-trajes {
@@ -2622,5 +2622,15 @@ details.acc ul {
   }
   .visit-photo-caption strong {
     font-size: 22px;
+  }
+}
+.bento-calzado .bento-name,
+.bento-sacos .bento-name {
+  font-size: clamp(24px, 2vw, 30px);
+}
+@media (max-width: 600px) {
+  .bento-calzado .bento-name,
+  .bento-sacos .bento-name {
+    font-size: 20px;
   }
 }
