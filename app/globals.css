@@ -1821,20 +1821,21 @@ details.acc ul {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 55%;
   animation: rent-zoom 18s ease-in-out infinite alternate;
 }
 .rent-media::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(13, 13, 13, 0) 55%, rgba(22, 20, 18, 0.9) 100%);
+  background: linear-gradient(0deg, rgba(13, 13, 13, 0.45) 0%, rgba(13, 13, 13, 0) 35%);
 }
 @keyframes rent-zoom {
   from {
-    transform: scale(1.04) translate(0, 0);
+    transform: scale(1);
   }
   to {
-    transform: scale(1.16) translate(-2%, -2%);
+    transform: scale(1.06);
   }
 }
 .rent-badge {
@@ -2053,34 +2054,6 @@ details.acc ul {
   border-color: var(--brass);
 }
 
-/* Franja de ocasiones */
-.rent-marquee {
-  border-top: 1px solid var(--line);
-  padding: 26px 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.rent-marquee-track {
-  display: inline-flex;
-  animation: rv-scroll 32s linear infinite;
-}
-.rent-marquee-track span {
-  font-family: var(--bodoni);
-  font-variation-settings: "opsz" 11;
-  font-style: italic;
-  font-size: clamp(30px, 4vw, 56px);
-  color: transparent;
-  -webkit-text-stroke: 1px var(--brass-text);
-  padding-right: 0.5em;
-}
-.rent-marquee-track i {
-  font-style: normal;
-  font-size: 0.5em;
-  vertical-align: middle;
-  color: var(--brass);
-  -webkit-text-stroke: 0;
-  margin: 0 0.5em;
-}
 @media (max-width: 700px) {
   .rent-media {
     min-height: 380px;
@@ -2103,8 +2076,7 @@ details.acc ul {
   }
   .rent-media img,
   .rent-badge,
-  .btn-shine::after,
-  .rent-marquee-track {
+  .btn-shine::after {
     animation: none;
   }
 }
@@ -2127,9 +2099,7 @@ details.acc ul {
     width: 40px;
     height: 40px;
   }
-  .rent-media::after {
-    background: linear-gradient(180deg, rgba(13, 13, 13, 0) 60%, rgba(22, 20, 18, 0.85) 100%);
-  }
+
 }
 
 /* ---------- Animación de entrada genérica ---------- */

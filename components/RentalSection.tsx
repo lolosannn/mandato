@@ -100,15 +100,6 @@ export function RentalSection() {
         </ol>
       </div>
 
-      <div className="rent-marquee" aria-hidden="true">
-        <div className="rent-marquee-track">
-          {[0, 1].map((k) => (
-            <span key={k}>
-              Casamientos <i>✦</i> Graduaciones <i>✦</i> Fiestas de egresados <i>✦</i> Bautismos <i>✦</i> Eventos de empresa <i>✦</i>{" "}
-            </span>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
