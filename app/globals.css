@@ -1763,3 +1763,21 @@ details.acc ul {
     display: none;
   }
 }
+
+/* Bodoni más robusta: tamaño óptico bajo = trazos finos más gruesos */
+.manifesto-title h2,
+.value-card h3,
+.value-num,
+.stat-card strong,
+.rv-card blockquote {
+  font-optical-sizing: none;
+  font-variation-settings: "opsz" 11;
+}
+.manifesto-title h2,
+.value-card h3,
+.stat-card strong {
+  font-weight: 500;
+}
+.manifesto-title h2 {
+  letter-spacing: -0.015em;
+}
