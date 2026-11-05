@@ -3,6 +3,8 @@
 // Reemplazarlos por los reales antes de publicar. Para agregar fotos, subirlas a
 // /public/productos/ y poner la ruta en `images` (ej: "/productos/traje-azul-1.jpg").
 
+import { PRODUCT_PHOTOS, type PhotoCredit } from "./product-photos";
+
 export type CategoryId = "trajes" | "sacos" | "chalecos" | "pantalones" | "camisas" | "calzado" | "accesorios";
 
 export type CategoryGroup = "Sastrería" | "Camisería" | "Calzado" | "Accesorios";
@@ -39,6 +41,7 @@ export type Product = {
   images: string[];
   featured?: boolean;
   pairsWith?: string[];
+  credit?: PhotoCredit;
 };
 
 const SUIT_SIZES = ["44", "46", "48", "50", "52", "54", "56"];
@@ -384,6 +387,15 @@ export const PRODUCTS: Product[] = [
     images: [],
   },
 ];
+
+// Si un producto no tiene fotos propias, usa la de referencia (Unsplash).
+for (const p of PRODUCTS) {
+  const photo = PRODUCT_PHOTOS[p.slug];
+  if (!p.images.length && photo) {
+    p.images = [photo.src];
+    p.credit = photo;
+  }
+}
 
 export function getProduct(slug: string) {
   return PRODUCTS.find((p) => p.slug === slug);

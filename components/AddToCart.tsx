@@ -45,6 +45,13 @@ export function ProductBuy({ product, children }: { product: Product; children: 
         <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
           {product.tag && <span className={`tag${product.tag === "Oferta" ? " red" : ""}`}>{product.tag}</span>}
           <ProductImage product={product} index={photo} colorHex={color.hex} priority />
+          {product.credit && (
+            <p className="photo-credit">
+              Foto de referencia:{" "}
+              <a href={product.credit.authorUrl} target="_blank" rel="noopener">{product.credit.author}</a> en{" "}
+              <a href={product.credit.photoUrl} target="_blank" rel="noopener">Unsplash</a>
+            </p>
+          )}
         </div>
       </div>
 
