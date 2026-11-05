@@ -1467,3 +1467,194 @@ details.acc ul {
     display: none;
   }
 }
+
+/* ---------- Manifiesto (bloques) ---------- */
+:root {
+  --bodoni: "Bodoni Moda", "Didot", Georgia, serif;
+}
+.manifesto .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.manifesto-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 64px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #d6cec1;
+}
+.manifesto-title {
+  flex: 1 1 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.manifesto-title h2 {
+  margin: 0;
+  font-family: var(--bodoni);
+  font-weight: 400;
+  font-size: clamp(32px, 3.6vw, 50px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.manifesto-title h2 em {
+  font-style: italic;
+  color: var(--brass-dark);
+}
+.manifesto-intro {
+  flex: 0 1 320px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4a4640;
+}
+.value-grid,
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
+}
+.stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+}
+.value-card,
+.stat-card {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid #e2dace;
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+}
+.value-card::before,
+.stat-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  width: 0;
+  background: var(--brass);
+  transition: width 0.45s ease;
+}
+.value-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 36px 44px;
+  min-height: 300px;
+  outline: none;
+}
+.value-num {
+  font-family: var(--bodoni);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  color: var(--brass-dark);
+  transition: color 0.35s ease;
+}
+.value-num::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  margin-top: 18px;
+  background: currentColor;
+  opacity: 0.6;
+  transition: width 0.45s ease;
+}
+.value-card h3 {
+  margin: 8px 0 0;
+  font-family: var(--bodoni);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.15;
+}
+.value-card p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: #4a4640;
+  transition: color 0.35s ease;
+}
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px 32px;
+}
+.stat-card strong {
+  font-family: var(--bodoni);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.stat-card span {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-dark);
+  transition: color 0.35s ease;
+}
+/* Resaltado al pasar el cursor (o al navegar con teclado) */
+.value-card:hover,
+.value-card:focus-visible,
+.stat-card:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--ivory);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(20, 18, 16, 0.18);
+}
+.value-card:hover::before,
+.value-card:focus-visible::before,
+.stat-card:hover::before {
+  width: 100%;
+}
+.value-card:hover .value-num,
+.value-card:focus-visible .value-num {
+  color: var(--brass-text);
+}
+.value-card:hover .value-num::after,
+.value-card:focus-visible .value-num::after {
+  width: 64px;
+}
+.value-card:hover p,
+.value-card:focus-visible p {
+  color: var(--muted-2);
+}
+.stat-card:hover span {
+  color: var(--brass-text);
+}
+@media (prefers-reduced-motion: reduce) {
+  .value-card,
+  .stat-card,
+  .value-card::before,
+  .stat-card::before {
+    transition: none;
+  }
+  .value-card:hover,
+  .stat-card:hover {
+    transform: none;
+  }
+}
+.stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(44%, 200px), 1fr));
+}
+@media (max-width: 600px) {
+  .stat-card {
+    padding: 22px 18px;
+  }
+  .stat-card strong {
+    font-size: 32px;
+  }
+  .stat-card span {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+  .value-card {
+    min-height: 0;
+    padding: 32px 26px;
+  }
+}
