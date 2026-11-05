@@ -1,14 +1,15 @@
 import Link from "next/link";
-import { CATEGORIES, PRODUCTS } from "@/lib/products";
+import { PRODUCTS } from "@/lib/products";
 import { STORE, whatsappLink } from "@/lib/config";
 import { ProductCard } from "@/components/ProductCard";
 import { Reviews } from "@/components/Reviews";
 import { RentalSection } from "@/components/RentalSection";
+import { CollectionGrid } from "@/components/CollectionGrid";
 import { CalendarIcon, ChatIcon, HangerIcon, PinIcon, ShieldIcon, TruckIcon } from "@/components/Icons";
 import { asset } from "@/lib/asset";
 
 export default function Home() {
-  const featured = PRODUCTS.filter((p) => p.featured).slice(0, 4);
+  const featured = PRODUCTS.filter((p) => p.featured).slice(0, 8);
 
   return (
     <>
@@ -57,16 +58,22 @@ export default function Home() {
             </div>
             <Link href="/tienda" className="caps">Ver todo →</Link>
           </div>
-          <div className="grid-4">
-            {CATEGORIES.map((c) => (
-              <Link key={c.id} href={`/tienda?categoria=${c.id}`} className="cat-card">
-                <div className="ph">
-                  <img className="ph-logo" src={asset("/img/logo-colibri.png")} alt="" />
-                  <b>{c.name}</b>
-                </div>
-                <span className="caps" style={{ fontSize: 13 }}>{c.description}</span>
-              </Link>
-            ))}
+          <CollectionGrid />
+        </div>
+      </section>
+
+      {/* Destacados */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Tienda online</p>
+              <h2 className="display h2">Lo más elegido</h2>
+            </div>
+            <Link href="/tienda" className="caps">Ver todo →</Link>
+          </div>
+          <div className="grid">
+            {featured.map((p) => <ProductCard key={p.slug} product={p} />)}
           </div>
         </div>
       </section>
@@ -109,22 +116,6 @@ export default function Home() {
             ) : (
               <div className="stat-card"><strong>{Math.round(STORE.transferDiscount * 100)}%</strong><span>Off por transferencia</span></div>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* Destacados */}
-      <section className="section">
-        <div className="wrap">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">Tienda online</p>
-              <h2 className="display h2">Lo más elegido</h2>
-            </div>
-            <Link href="/tienda" className="caps">Ver todo →</Link>
-          </div>
-          <div className="grid">
-            {featured.map((p) => <ProductCard key={p.slug} product={p} />)}
           </div>
         </div>
       </section>

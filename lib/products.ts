@@ -3,14 +3,23 @@
 // Reemplazarlos por los reales antes de publicar. Para agregar fotos, subirlas a
 // /public/productos/ y poner la ruta en `images` (ej: "/productos/traje-azul-1.jpg").
 
-export type CategoryId = "trajes" | "sacos" | "camisas" | "accesorios";
+export type CategoryId = "trajes" | "sacos" | "chalecos" | "pantalones" | "camisas" | "zapatillas" | "accesorios";
 
-export const CATEGORIES: { id: CategoryId; name: string; description: string }[] = [
-  { id: "trajes", name: "Trajes", description: "Slim fit, clásicos y de tres piezas." },
-  { id: "sacos", name: "Sacos y blazers", description: "Para el día a día o un evento." },
-  { id: "camisas", name: "Camisas", description: "De vestir, lisas y con textura." },
-  { id: "accesorios", name: "Corbatas y accesorios", description: "El detalle que completa el look." },
+export type CategoryGroup = "Sastrería" | "Camisería" | "Calzado" | "Accesorios";
+
+export const CATEGORIES: { id: CategoryId; name: string; description: string; group: CategoryGroup }[] = [
+  { id: "trajes", name: "Trajes", description: "Slim fit, clásicos y de tres piezas. Venta y alquiler.", group: "Sastrería" },
+  { id: "sacos", name: "Sacos y blazers", description: "Para el día a día o un evento.", group: "Sastrería" },
+  { id: "chalecos", name: "Chalecos", description: "El toque formal que eleva cualquier look.", group: "Sastrería" },
+  { id: "pantalones", name: "Pantalones", description: "De vestir y chinos, con calce perfecto.", group: "Sastrería" },
+  { id: "zapatillas", name: "Zapatillas", description: "Cuero y diseño urbano para combinar con traje.", group: "Calzado" },
+  { id: "camisas", name: "Camisas", description: "De vestir, lisas y con textura.", group: "Camisería" },
+  { id: "accesorios", name: "Corbatas y accesorios", description: "Corbatas, moños, cinturones, gemelos y pañuelos.", group: "Accesorios" },
 ];
+
+export function countByCategory(id: CategoryId) {
+  return PRODUCTS.filter((p) => p.category === id).length;
+}
 
 export type Color = { name: string; hex: string };
 
@@ -34,6 +43,8 @@ export type Product = {
 
 const SUIT_SIZES = ["44", "46", "48", "50", "52", "54", "56"];
 const SHIRT_SIZES = ["38", "39", "40", "41", "42", "43", "44"];
+const PANT_SIZES = ["38", "40", "42", "44", "46", "48", "50"];
+const SHOE_SIZES = ["39", "40", "41", "42", "43", "44", "45"];
 
 export const PRODUCTS: Product[] = [
   {
@@ -163,6 +174,7 @@ export const PRODUCTS: Product[] = [
     details: ["Seda", "Ancho 7 cm"],
     weightKg: 0.1,
     images: [],
+    featured: true,
   },
   {
     slug: "corbata-seda-azul",
@@ -237,6 +249,122 @@ export const PRODUCTS: Product[] = [
     description: "Gemelos de acero con terminación satinada, en estuche.",
     details: ["Acero", "Incluye estuche"],
     weightKg: 0.1,
+    images: [],
+  },
+  {
+    slug: "chaleco-vestir-gris-oxford",
+    name: "Chaleco de Vestir Gris Oxford",
+    category: "chalecos",
+    price: 89000,
+    colors: [
+      { name: "Gris oxford", hex: "#4A4A4C" },
+      { name: "Azul marino", hex: "#1F2A44" },
+    ],
+    sizes: SUIT_SIZES,
+    featured: true,
+    description: "Cinco botones, espalda de forrería y entalle justo. Sumalo a tu traje o usalo con camisa y pantalón para un look distinto.",
+    details: ["Cinco botones", "Espalda con hebilla regulable", "Tintorería recomendada"],
+    weightKg: 0.5,
+    images: [],
+    pairsWith: ["pantalon-vestir-gris", "camisa-vestir-blanca", "corbata-seda-bordo"],
+  },
+  {
+    slug: "chaleco-negro",
+    name: "Chaleco Negro",
+    category: "chalecos",
+    price: 85000,
+    colors: [{ name: "Negro", hex: "#111111" }],
+    sizes: SUIT_SIZES,
+    description: "El clásico para eventos de noche. Combina con el traje negro o con pantalón gris.",
+    details: ["Cinco botones", "Espalda de forrería", "Tintorería recomendada"],
+    weightKg: 0.5,
+    images: [],
+    pairsWith: ["pantalon-vestir-negro", "corbata-seda-negra"],
+  },
+  {
+    slug: "pantalon-vestir-negro",
+    name: "Pantalón de Vestir Negro",
+    category: "pantalones",
+    price: 95000,
+    colors: [{ name: "Negro", hex: "#111111" }],
+    sizes: PANT_SIZES,
+    description: "Corte recto con caída impecable. La base de cualquier look formal.",
+    details: ["Tiro medio", "Sin pinzas", "Bolsillos traseros con botón"],
+    weightKg: 0.6,
+    images: [],
+    pairsWith: ["camisa-vestir-blanca", "cinturon-cuero-negro", "zapatillas-cuero-negras"],
+  },
+  {
+    slug: "pantalon-vestir-gris",
+    name: "Pantalón de Vestir Gris",
+    category: "pantalones",
+    price: 95000,
+    colors: [
+      { name: "Gris medio", hex: "#77777A" },
+      { name: "Gris oxford", hex: "#4A4A4C" },
+    ],
+    sizes: PANT_SIZES,
+    featured: true,
+    description: "Slim fit, ideal con blazer azul o camel.",
+    details: ["Tiro medio", "Slim fit", "Sin pinzas"],
+    weightKg: 0.6,
+    images: [],
+    pairsWith: ["blazer-camel", "camisa-vestir-celeste"],
+  },
+  {
+    slug: "pantalon-chino-beige",
+    name: "Pantalón Chino Beige",
+    category: "pantalones",
+    price: 79000,
+    colors: [
+      { name: "Beige", hex: "#CDB89A" },
+      { name: "Azul marino", hex: "#1F2A44" },
+    ],
+    sizes: PANT_SIZES,
+    description: "Gabardina con elastano. Smart casual para la oficina o el fin de semana.",
+    details: ["Gabardina con elastano", "Slim fit"],
+    weightKg: 0.55,
+    images: [],
+    pairsWith: ["saco-azul-marino", "zapatillas-cuero-blancas"],
+  },
+  {
+    slug: "zapatillas-cuero-blancas",
+    name: "Zapatillas de Cuero Blancas",
+    category: "zapatillas",
+    price: 145000,
+    colors: [{ name: "Blanco", hex: "#F2F0EB" }],
+    sizes: SHOE_SIZES,
+    tag: "Nuevo",
+    featured: true,
+    description: "Cuero liso, suela de goma y diseño minimalista. Se ven increíbles con traje.",
+    details: ["Capellada de cuero", "Suela de goma cosida", "Plantilla acolchada"],
+    weightKg: 1.2,
+    images: [],
+    pairsWith: ["traje-slim-fit-azul-noche", "pantalon-chino-beige"],
+  },
+  {
+    slug: "zapatillas-cuero-negras",
+    name: "Zapatillas de Cuero Negras",
+    category: "zapatillas",
+    price: 145000,
+    colors: [{ name: "Negro", hex: "#111111" }],
+    sizes: SHOE_SIZES,
+    description: "Total black en cuero: elegantes para la noche, cómodas todo el día.",
+    details: ["Capellada de cuero", "Suela de goma", "Plantilla acolchada"],
+    weightKg: 1.2,
+    images: [],
+    pairsWith: ["traje-clasico-negro", "pantalon-vestir-negro"],
+  },
+  {
+    slug: "mono-seda-negro",
+    name: "Moño de Seda Negro",
+    category: "accesorios",
+    price: 28000,
+    colors: [{ name: "Negro", hex: "#111111" }],
+    sizes: ["Único"],
+    description: "Para eventos de etiqueta. Ajustable.",
+    details: ["Seda", "Ajustable"],
+    weightKg: 0.05,
     images: [],
   },
 ];

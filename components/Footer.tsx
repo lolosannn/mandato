@@ -2,6 +2,7 @@ import Link from "next/link";
 import { STORE, whatsappLink } from "@/lib/config";
 import { ChatIcon } from "./Icons";
 import { asset } from "@/lib/asset";
+import { CATEGORIES } from "@/lib/products";
 
 export function Footer() {
   return (
@@ -24,10 +25,9 @@ export function Footer() {
           </div>
           <div className="footer-col">
             <h2>Tienda</h2>
-            <Link href="/tienda?categoria=trajes">Trajes</Link>
-            <Link href="/tienda?categoria=sacos">Sacos y blazers</Link>
-            <Link href="/tienda?categoria=camisas">Camisas</Link>
-            <Link href="/tienda?categoria=accesorios">Accesorios</Link>
+            {CATEGORIES.map((c) => (
+              <Link key={c.id} href={`/tienda?categoria=${c.id}`}>{c.name}</Link>
+            ))}
             <Link href="/alquiler">Alquiler de trajes</Link>
           </div>
           <div className="footer-col">

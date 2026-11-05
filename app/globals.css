@@ -2132,3 +2132,354 @@ details.acc ul {
     background: linear-gradient(180deg, rgba(13, 13, 13, 0) 60%, rgba(22, 20, 18, 0.85) 100%);
   }
 }
+
+/* ---------- Animación de entrada genérica ---------- */
+.is-in .rv-up {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Colección (bento) ---------- */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 250px;
+  gap: 14px;
+}
+.bento-trajes {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.bento-camisas,
+.bento-accesorios {
+  grid-column: span 2;
+}
+.bento-tile {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 26px 28px;
+  background: var(--charcoal);
+  border: 1px solid var(--line);
+  color: var(--ivory);
+  text-decoration: none;
+  isolation: isolate;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.4s ease;
+}
+.bento-tile:hover {
+  color: var(--ivory);
+  border-color: var(--brass);
+}
+/* Relleno dorado que sube al pasar el cursor */
+.bento-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--brass);
+  transform: translateY(101%);
+  transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.bento-tile:hover::before,
+.bento-tile:focus-visible::before {
+  transform: translateY(0);
+}
+.bento-tile:hover,
+.bento-tile:focus-visible {
+  color: var(--ink);
+}
+.bento-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.5s ease;
+}
+.bento-trajes::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(0deg, rgba(13, 13, 13, 0.92) 10%, rgba(13, 13, 13, 0.2) 70%);
+  pointer-events: none;
+}
+.bento-trajes:hover .bento-photo {
+  transform: scale(1.08);
+}
+/* El de trajes mantiene la foto: el dorado se aplica como velo */
+.bento-trajes::before {
+  opacity: 0.92;
+}
+.bento-mark {
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+  filter: invert(1);
+  mix-blend-mode: screen;
+  opacity: 0.06;
+  z-index: -1;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.4s ease;
+}
+.bento-tile:hover .bento-mark {
+  transform: translate(-16px, -16px) rotate(-8deg) scale(1.1);
+  opacity: 0;
+}
+.bento-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.bento-num {
+  font-family: var(--bodoni);
+  font-variation-settings: "opsz" 11;
+  letter-spacing: 0.12em;
+  color: var(--brass-text);
+  transition: color 0.4s ease;
+}
+.bento-group {
+  color: var(--muted);
+  transition: color 0.4s ease;
+}
+.bento-tile:hover .bento-num,
+.bento-tile:hover .bento-group {
+  color: var(--ink);
+}
+.bento-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bento-name {
+  font-family: var(--bodoni);
+  font-variation-settings: "opsz" 11;
+  font-weight: 500;
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1.1;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.bento-trajes .bento-name {
+  font-size: clamp(40px, 4.4vw, 64px);
+}
+.bento-tile:hover .bento-name {
+  transform: translateX(6px);
+}
+.bento-desc {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--muted-2);
+  max-width: 360px;
+  transition: color 0.4s ease;
+}
+.bento-tile:hover .bento-desc {
+  color: #2a2016;
+}
+.bento-cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.bento-arrow {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+}
+.bento-tile:hover .bento-arrow {
+  transform: translateX(6px);
+  background: var(--ink);
+  color: var(--brass-text);
+  border-color: var(--ink);
+}
+@media (max-width: 960px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 210px;
+  }
+  .bento-trajes {
+    grid-column: span 2;
+    grid-row: span 1;
+    min-height: 300px;
+  }
+  .bento-camisas,
+  .bento-accesorios {
+    grid-column: span 1;
+  }
+}
+@media (max-width: 600px) {
+  .bento {
+    gap: 10px;
+    grid-auto-rows: 200px;
+  }
+  .bento-tile {
+    padding: 18px 16px;
+  }
+  .bento-desc {
+    display: none;
+  }
+  .bento-name {
+    font-size: 23px;
+  }
+  .bento-trajes .bento-name {
+    font-size: 40px;
+  }
+  .bento-trajes .bento-desc {
+    display: block;
+  }
+  .bento-group {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bento-tile {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Menú desplegable de colección ---------- */
+.nav-drop {
+  position: relative;
+}
+.nav-drop > button {
+  background: none;
+  border: 0;
+  padding: 8px 0;
+  color: var(--ivory);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-drop > button:hover,
+.nav-drop:focus-within > button {
+  color: var(--brass-text);
+}
+.nav-drop > button svg {
+  transition: transform 0.3s ease;
+}
+.nav-drop:hover > button svg,
+.nav-drop:focus-within > button svg {
+  transform: rotate(90deg);
+}
+.mega {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 620px;
+  padding-top: 22px;
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+.nav-drop:hover .mega,
+.nav-drop:focus-within .mega {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+.mega-inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 40px;
+  padding: 30px 34px;
+  background: var(--ink-2);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5);
+}
+.mega-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mega-group > span {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--brass-text);
+  margin-bottom: 4px;
+}
+.mega-group a {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 16px;
+  padding: 4px 0;
+}
+.mega-all {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  font-size: 12px !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--brass-text) !important;
+}
+.mobile-nav .mobile-group {
+  padding: 16px 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--brass-text);
+  text-transform: uppercase;
+}
+/* Distribución fija de la colección (sin huecos) */
+.bento {
+  grid-template-areas:
+    "trajes trajes sacos chalecos"
+    "trajes trajes pantalones zapatillas"
+    "camisas camisas accesorios accesorios";
+  grid-template-rows: repeat(3, 250px);
+  grid-auto-rows: auto;
+}
+.bento-trajes { grid-area: trajes; }
+.bento-sacos { grid-area: sacos; }
+.bento-chalecos { grid-area: chalecos; }
+.bento-pantalones { grid-area: pantalones; }
+.bento-zapatillas { grid-area: zapatillas; }
+.bento-camisas { grid-area: camisas; }
+.bento-accesorios { grid-area: accesorios; }
+@media (max-width: 960px) {
+  .bento {
+    grid-template-areas:
+      "trajes trajes"
+      "sacos chalecos"
+      "pantalones zapatillas"
+      "camisas accesorios";
+    grid-template-rows: 300px repeat(3, 210px);
+  }
+  .bento-trajes {
+    min-height: 0;
+  }
+}
+@media (max-width: 600px) {
+  .bento {
+    grid-template-rows: 280px repeat(3, 190px);
+  }
+  .bento-name {
+    font-size: 21px;
+  }
+  .bento-cta {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+}
