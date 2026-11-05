@@ -14,6 +14,16 @@ function categoryImage(id: string) {
   return id === "trajes" ? "/img/local-noche.webp" : null;
 }
 
+// Encuadre de cada foto (las fotos son horizontales y algunos bloques son cuadrados).
+const FOCUS: Record<string, string> = {
+  trajes: "50% 30%",
+  camisas: "45% 55%",
+  pantalones: "50% 50%",
+  calzado: "50% 55%",
+  chalecos: "75% 40%",
+  accesorios: "80% 50%",
+};
+
 export function CollectionGrid() {
   return (
     <Reveal className="bento">
@@ -27,7 +37,7 @@ export function CollectionGrid() {
             className={`bento-tile bento-${c.id}${img ? " has-photo" : ""} rv-up`}
             style={{ transitionDelay: `${0.06 * i}s` }}
           >
-            {img && <img className="bento-photo" src={asset(img)} alt="" loading="lazy" />}
+            {img && <img className="bento-photo" src={asset(img)} alt="" loading="lazy" style={{ objectPosition: FOCUS[c.id] ?? "50% 50%" }} />}
             <img className="bento-mark" src={asset("/img/logo-colibri.png")} alt="" />
             <span className="bento-top">
               <span className="bento-num">0{i + 1}</span>
