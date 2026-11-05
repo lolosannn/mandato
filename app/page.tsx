@@ -3,6 +3,7 @@ import { CATEGORIES, PRODUCTS } from "@/lib/products";
 import { STORE, whatsappLink } from "@/lib/config";
 import { ProductCard } from "@/components/ProductCard";
 import { Reviews } from "@/components/Reviews";
+import { RentalSection } from "@/components/RentalSection";
 import { CalendarIcon, ChatIcon, HangerIcon, PinIcon, ShieldIcon, TruckIcon } from "@/components/Icons";
 import { asset } from "@/lib/asset";
 
@@ -129,27 +130,7 @@ export default function Home() {
       </section>
 
       {/* Alquiler */}
-      <section className="band split">
-        <div className="split-media">
-          <img src={asset("/img/local-vidriera.webp")} alt="Vidriera del local Mandato con trajes en exhibición" loading="lazy" />
-        </div>
-        <div className="split-body">
-          <p className="eyebrow">Alquiler de trajes</p>
-          <h2 className="display h2">¿Casamiento, graduación o evento? Llegá impecable.</h2>
-          <ol className="steps">
-            <li><span>1</span>Reservás tu turno online o por WhatsApp</li>
-            <li><span>2</span>Te asesoramos y probás en el local</li>
-            <li><span>3</span>Ajustamos el calce y lo retirás listo</li>
-            <li><span>4</span>Lo devolvés después del evento</li>
-          </ol>
-          <div className="actions">
-            <Link className="btn btn-gold" href="/turnos?servicio=alquiler">Reservar turno</Link>
-            <a className="btn btn-line" href={whatsappLink("Hola Mandato! Quería consultar por el alquiler de un traje.")} target="_blank" rel="noopener">
-              <ChatIcon /> Consultar por WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
+      <RentalSection />
 
       <Reviews />
 
