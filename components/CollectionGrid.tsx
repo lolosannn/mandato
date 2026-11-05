@@ -17,6 +17,7 @@ function categoryImage(id: string) {
 // Encuadre de cada foto (las fotos son horizontales y algunos bloques son cuadrados).
 const FOCUS: Record<string, string> = {
   trajes: "50% 30%",
+  sacos: "60% 40%",
   camisas: "45% 55%",
   pantalones: "50% 50%",
   calzado: "50% 55%",
