@@ -6,20 +6,14 @@ import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
 import { BagIcon, CloseIcon, MenuIcon } from "./Icons";
 import { STORE } from "@/lib/config";
-import { CATEGORIES } from "@/lib/products";
-import { ArrowRight } from "./Icons";
 import { asset } from "@/lib/asset";
 
 const NAV = [
-  { href: "/tienda?categoria=trajes", label: "Trajes" },
+  { href: "/coleccion", label: "Colección" },
+  { href: "/tienda", label: "Tienda" },
   { href: "/alquiler", label: "Alquiler" },
   { href: "/turnos", label: "Turnos" },
 ];
-
-const GROUPS = Array.from(new Set(CATEGORIES.map((c) => c.group))).map((g) => ({
-  group: g,
-  items: CATEGORIES.filter((c) => c.group === g),
-}));
 
 export function Header() {
   const { count, toast, dismissToast } = useCart();
@@ -44,24 +38,6 @@ export function Header() {
             <span>MANDATO</span>
           </Link>
           <nav className="nav" aria-label="Principal">
-            <div className="nav-drop">
-              <button type="button" aria-haspopup="true">
-                Colección <ArrowRight size={12} />
-              </button>
-              <div className="mega">
-                <div className="mega-inner">
-                  {GROUPS.map((g) => (
-                    <div className="mega-group" key={g.group}>
-                      <span>{g.group}</span>
-                      {g.items.map((c) => (
-                        <Link key={c.id} href={`/tienda?categoria=${c.id}`}>{c.name}</Link>
-                      ))}
-                    </div>
-                  ))}
-                  <Link className="mega-all" href="/tienda">Ver toda la colección →</Link>
-                </div>
-              </div>
-            </div>
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} aria-current={pathname === n.href ? "page" : undefined}>
                 {n.label}
@@ -82,18 +58,9 @@ export function Header() {
           </div>
         </div>
         <nav className={`mobile-nav${open ? " open" : ""}`} aria-label="Menú móvil">
-          {GROUPS.map((g) => (
-            <div key={g.group} style={{ display: "contents" }}>
-              <span className="mobile-group">{g.group}</span>
-              {g.items.map((c) => (
-                <Link key={c.id} href={`/tienda?categoria=${c.id}`}>{c.name}</Link>
-              ))}
-            </div>
+          {NAV.map((n) => (
+            <Link key={n.href} href={n.href}>{n.label}</Link>
           ))}
-          <span className="mobile-group">Mandato</span>
-          <Link href="/tienda">Ver toda la colección</Link>
-          <Link href="/alquiler">Alquiler</Link>
-          <Link href="/turnos">Turnos</Link>
         </nav>
       </header>
       {toast && (
