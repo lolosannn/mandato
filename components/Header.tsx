@@ -9,10 +9,10 @@ import { STORE } from "@/lib/config";
 import { asset } from "@/lib/asset";
 
 const NAV = [
+  { href: "/", label: "Inicio" },
   { href: "/coleccion", label: "Colección" },
   { href: "/tienda", label: "Tienda" },
   { href: "/alquiler", label: "Alquiler" },
-  { href: "/turnos", label: "Turnos" },
 ];
 
 export function Header() {
