@@ -6,7 +6,6 @@ import { Reviews } from "@/components/Reviews";
 import { RentalSection } from "@/components/RentalSection";
 import { CollectionGrid } from "@/components/CollectionGrid";
 import { VisitSection } from "@/components/VisitSection";
-import { HeroSlider } from "@/components/HeroSlider";
 import { CalendarIcon, ChatIcon, HangerIcon, PinIcon, ShieldIcon, TruckIcon } from "@/components/Icons";
 import { asset } from "@/lib/asset";
 
@@ -15,29 +14,31 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero: foto fija + promoción (provisoria) */}
       <section className="split hero">
-        <div className="split-body hero-copy">
-          <p className="eyebrow">Sastrería y moda masculina · Desde {STORE.since}</p>
-          <h1 className="display h1">
-            Tu mejor versión empieza por <em>cómo te presentás.</em>
-          </h1>
-          <p className="lead">
-            {STORE.years} años vistiendo a hombres que marcan la diferencia. Trajes, sacos y camisas de calidad premium, en venta y
-            alquiler, con el asesoramiento de quienes conocen el oficio.
+        <div className="split-body hero-copy hero-promo">
+          <span className="promo-tag">Promoción de temporada</span>
+          <p className="promo-off">
+            <strong>20%</strong>
+            <span>OFF</span>
           </p>
+          <p className="promo-what">en trajes y sacos seleccionados</p>
+          <p className="promo-note">Válido por tiempo limitado · Además, {STORE.installments} cuotas sin interés</p>
           <div className="actions">
-            <Link className="btn btn-gold" href="/coleccion">Ver la colección</Link>
-            <Link className="btn btn-line" href="/turnos"><CalendarIcon /> Sacar turno</Link>
+            <Link className="btn btn-gold btn-shine" href="/tienda?categoria=trajes">Aprovechar el descuento</Link>
           </div>
         </div>
         <div className="split-media hero-media">
-          <HeroSlider>
-            <div className="hero-badge">
-              <strong>{STORE.years}</strong>
-              <span>años de trayectoria<br />en Monte Grande</span>
-            </div>
-          </HeroSlider>
+          <img
+            src={asset("/img/hero-saco-celeste.webp")}
+            alt="Hombre con saco celeste y camisa a rayas caminando por una avenida arbolada"
+            fetchPriority="high"
+            style={{ objectPosition: "center 20%" }}
+          />
+          <div className="hero-sticker" aria-hidden="true">
+            <strong>-20%</strong>
+            <span>Trajes y sacos</span>
+          </div>
         </div>
       </section>
 
