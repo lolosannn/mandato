@@ -4,6 +4,7 @@ import { CartProvider } from "@/components/CartProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SITE_URL, STORE } from "@/lib/config";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -12,12 +13,12 @@ export const metadata: Metadata = {
     template: "%s · MANDATO",
   },
   description: `Trajes, sacos y camisas en venta y alquiler. ${STORE.years} años vistiendo a hombres que marcan la diferencia. Envíos a todo el país con Andreani. ${STORE.address}.`,
-  icons: { icon: "/img/logo-colibri.png" },
+  icons: { icon: asset("/img/logo-colibri.png") },
   openGraph: {
     type: "website",
     locale: "es_AR",
     siteName: "MANDATO",
-    images: ["/img/local-noche.webp"],
+    images: [asset("/img/local-noche.webp")],
   },
 };
 

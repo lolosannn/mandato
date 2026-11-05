@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { STORE, whatsappLink } from "@/lib/config";
 import { ChatIcon } from "./Icons";
+import { asset } from "@/lib/asset";
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
         <div className="wrap footer-top">
           <div className="footer-col" style={{ flex: "1.4 1 280px", gap: 20 }}>
             <Link href="/" className="brand" aria-label="Mandato, inicio">
-              <img src="/img/logo-colibri.png" alt="" width={36} height={36} />
+              <img src={asset("/img/logo-colibri.png")} alt="" width={36} height={36} />
               <span>MANDATO</span>
             </Link>
             <p style={{ margin: 0, lineHeight: 1.6, maxWidth: 340 }}>

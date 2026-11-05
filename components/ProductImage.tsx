@@ -1,4 +1,5 @@
 import type { Product } from "@/lib/products";
+import { asset } from "@/lib/asset";
 
 // Muestra la foto del producto o, si todavía no hay, un placeholder de marca.
 export function ProductImage({
@@ -24,7 +25,7 @@ export function ProductImage({
         <img className="photo" src={src} alt={product.name} loading={priority ? "eager" : "lazy"} />
       ) : (
         <>
-          <img className="ph-logo" src="/img/logo-colibri.png" alt="" />
+          <img className="ph-logo" src={asset("/img/logo-colibri.png")} alt="" />
           {showName && <span style={{ fontSize: 13, letterSpacing: "0.12em", textTransform: "uppercase" }}>{product.name}</span>}
           <span className="swatch-band" style={{ background: hex }} />
         </>

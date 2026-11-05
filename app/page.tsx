@@ -4,6 +4,7 @@ import { STORE, whatsappLink } from "@/lib/config";
 import { ProductCard } from "@/components/ProductCard";
 import { Reviews } from "@/components/Reviews";
 import { CalendarIcon, ChatIcon, HangerIcon, PinIcon, ShieldIcon, TruckIcon } from "@/components/Icons";
+import { asset } from "@/lib/asset";
 
 export default function Home() {
   const featured = PRODUCTS.filter((p) => p.featured).slice(0, 4);
@@ -27,7 +28,7 @@ export default function Home() {
           </div>
         </div>
         <div className="split-media" style={{ minHeight: 560 }}>
-          <img src="/img/local-noche.webp" alt="Fachada del local Mandato iluminada de noche" fetchPriority="high" style={{ objectPosition: "center 40%" }} />
+          <img src={asset("/img/local-noche.webp")} alt="Fachada del local Mandato iluminada de noche" fetchPriority="high" style={{ objectPosition: "center 40%" }} />
           <div className="hero-badge">
             <strong>{STORE.years}</strong>
             <span>años de trayectoria<br />en Monte Grande</span>
@@ -59,7 +60,7 @@ export default function Home() {
             {CATEGORIES.map((c) => (
               <Link key={c.id} href={`/tienda?categoria=${c.id}`} className="cat-card">
                 <div className="ph">
-                  <img className="ph-logo" src="/img/logo-colibri.png" alt="" />
+                  <img className="ph-logo" src={asset("/img/logo-colibri.png")} alt="" />
                   <b>{c.name}</b>
                 </div>
                 <span className="caps" style={{ fontSize: 13 }}>{c.description}</span>
@@ -124,7 +125,7 @@ export default function Home() {
       {/* Alquiler */}
       <section className="band split">
         <div className="split-media">
-          <img src="/img/local-vidriera.webp" alt="Vidriera del local Mandato con trajes en exhibición" loading="lazy" />
+          <img src={asset("/img/local-vidriera.webp")} alt="Vidriera del local Mandato con trajes en exhibición" loading="lazy" />
         </div>
         <div className="split-body">
           <p className="eyebrow">Alquiler de trajes</p>

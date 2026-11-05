@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Booking } from "@/components/Booking";
-import { getProduct } from "@/lib/products";
+import { Suspense } from "react";
+import { BookingFromUrl } from "@/components/BookingFromUrl";
 import { STORE } from "@/lib/config";
 
 export const metadata: Metadata = {
@@ -8,10 +8,7 @@ export const metadata: Metadata = {
   description: `Reservá tu turno de asesoramiento, alquiler o sastrería en ${STORE.address}.`,
 };
 
-export default async function Turnos({ searchParams }: { searchParams: Promise<{ servicio?: string; producto?: string }> }) {
-  const { servicio, producto } = await searchParams;
-  const product = producto ? getProduct(producto) : undefined;
-
+export default function Turnos() {
   return (
     <>
       <section className="wrap" style={{ paddingTop: "clamp(48px, 6vw, 88px)", paddingBottom: 40, display: "flex", flexDirection: "column", gap: 16 }}>
@@ -21,7 +18,9 @@ export default async function Turnos({ searchParams }: { searchParams: Promise<{
         </h1>
         <p className="lead">Un asesor con {STORE.years} años de oficio te recibe con propuestas pensadas para vos, sin esperas.</p>
       </section>
-      <Booking initialService={servicio} productName={product?.name} />
+      <Suspense fallback={null}>
+        <BookingFromUrl />
+      </Suspense>
     </>
   );
 }

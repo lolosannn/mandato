@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
 import { BagIcon, CloseIcon, MenuIcon } from "./Icons";
 import { STORE } from "@/lib/config";
+import { asset } from "@/lib/asset";
 
 const NAV = [
   { href: "/tienda?categoria=trajes", label: "Trajes" },
@@ -35,7 +36,7 @@ export function Header() {
       <header className="header">
         <div className="wrap">
           <Link href="/" className="brand" aria-label="Mandato, inicio">
-            <img src="/img/logo-colibri.png" alt="" width={38} height={38} />
+            <img src={asset("/img/logo-colibri.png")} alt="" width={38} height={38} />
             <span>MANDATO</span>
           </Link>
           <nav className="nav" aria-label="Principal">

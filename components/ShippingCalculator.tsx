@@ -5,6 +5,7 @@ import { money } from "@/lib/format";
 import type { ShippingQuote } from "@/lib/shipping";
 import type { CartItem } from "@/lib/order";
 import { TruckIcon } from "./Icons";
+import { getQuotes } from "@/lib/api";
 
 export function ShippingCalculator({ items }: { items: CartItem[] }) {
   const [cp, setCp] = useState("");
@@ -21,14 +22,7 @@ export function ShippingCalculator({ items }: { items: CartItem[] }) {
     }
     setLoading(true);
     try {
-      const res = await fetch("/api/envio", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cp, items }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "No pudimos calcular el envío.");
-      setQuotes(data.quotes);
+      setQuotes(await getQuotes(cp, items));
     } catch (err) {
       setError(err instanceof Error ? err.message : "No pudimos calcular el envío.");
     } finally {

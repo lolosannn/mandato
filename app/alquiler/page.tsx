@@ -4,6 +4,7 @@ import { PRODUCTS } from "@/lib/products";
 import { STORE, whatsappLink } from "@/lib/config";
 import { ProductCard } from "@/components/ProductCard";
 import { ChatIcon } from "@/components/Icons";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "Alquiler de trajes",
@@ -31,7 +32,7 @@ export default function Alquiler() {
           </div>
         </div>
         <div className="split-media">
-          <img src="/img/local-vidriera.webp" alt="Vidriera de Mandato con trajes en exhibición" />
+          <img src={asset("/img/local-vidriera.webp")} alt="Vidriera de Mandato con trajes en exhibición" />
         </div>
       </section>
 

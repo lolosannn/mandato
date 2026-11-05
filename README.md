@@ -45,3 +45,11 @@ npm run dev                  # http://localhost:3000
 ## Deploy
 
 Recomendado: Vercel. Se importa el repo, se cargan las variables de `.env.example` y listo.
+
+## Vista previa en GitHub Pages
+
+El workflow `.github/workflows/pages.yml` publica una versión estática en
+`https://<usuario>.github.io/mandato/` en cada push. Como Pages no tiene servidor:
+el envío se calcula con la tabla de respaldo, el pago con Mercado Pago queda deshabilitado
+(funciona la transferencia) y los turnos van por WhatsApp. Para activarlo:
+**Settings → Pages → Source: GitHub Actions**.

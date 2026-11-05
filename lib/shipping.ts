@@ -1,4 +1,5 @@
 import { STORE } from "./config";
+import { priceCart, type CartItem } from "./order";
 
 export type ShippingMethod = "domicilio" | "sucursal" | "retiro";
 
@@ -100,4 +101,13 @@ export async function quoteShipping(cp: string, items: ShippingItem[]): Promise<
       estimated: false,
     },
   ];
+}
+
+// Cotiza el envío de un carrito (precios y pesos validados contra el catálogo).
+export async function quoteCart(cp: string, cart: CartItem[]) {
+  const lines = priceCart(Array.isArray(cart) ? cart : []);
+  const items = lines.length
+    ? lines.map((l) => ({ weightKg: l.product.weightKg, price: l.unitPrice, quantity: l.quantity }))
+    : [{ weightKg: 1.5, price: 0, quantity: 1 }];
+  return quoteShipping(cp, items);
 }

@@ -10,13 +10,15 @@ import { getProduct } from "@/lib/products";
 import { money } from "@/lib/format";
 import { STORE } from "@/lib/config";
 import type { ShippingMethod, ShippingQuote } from "@/lib/shipping";
+import { getQuotes, postCheckout } from "@/lib/api";
+import { IS_STATIC } from "@/lib/asset";
 
 export default function Checkout() {
   const { items, ready, subtotal } = useCart();
   const router = useRouter();
 
   const [method, setMethod] = useState<ShippingMethod>("retiro");
-  const [payment, setPayment] = useState<"mercadopago" | "transferencia">("mercadopago");
+  const [payment, setPayment] = useState<"mercadopago" | "transferencia">(IS_STATIC ? "transferencia" : "mercadopago");
   const [cp, setCp] = useState("");
   const [quotes, setQuotes] = useState<ShippingQuote[] | null>(null);
   const [error, setError] = useState("");
@@ -29,14 +31,8 @@ export default function Checkout() {
       return;
     }
     const ctrl = new AbortController();
-    fetch("/api/envio", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cp, items }),
-      signal: ctrl.signal,
-    })
-      .then((r) => r.json())
-      .then((d) => setQuotes(d.quotes ?? null))
+    getQuotes(cp, items, ctrl.signal)
+      .then(setQuotes)
       .catch(() => {});
     return () => ctrl.abort();
   }, [cp, items]);
@@ -54,20 +50,15 @@ export default function Checkout() {
     const get = (k: string) => String(f.get(k) ?? "").trim();
     setSending(true);
     try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items,
-          customer: { email: get("email"), name: get("name"), phone: get("phone"), dni: get("dni") },
-          shipping: { method, cp, street: get("street"), city: get("city"), province: get("province"), notes: get("notes") },
-          payment,
-        }),
+      const { status, data } = await postCheckout({
+        items,
+        customer: { email: get("email"), name: get("name"), phone: get("phone"), dni: get("dni") },
+        shipping: { method, cp, street: get("street"), city: get("city"), province: get("province"), notes: get("notes") },
+        payment,
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "No pudimos procesar tu pedido.");
+      if (status !== 200) throw new Error(String(data.error || "No pudimos procesar tu pedido."));
       if (data.kind === "mercadopago" && data.redirect) {
-        window.location.href = data.redirect;
+        window.location.href = String(data.redirect);
         return;
       }
       sessionStorage.setItem("mandato-last-order", JSON.stringify({ ...data, customer: get("name") }));
@@ -146,10 +137,14 @@ export default function Checkout() {
           <fieldset>
             <legend>3 · Pago</legend>
             <label className="option">
-              <input type="radio" name="pay" checked={payment === "mercadopago"} onChange={() => setPayment("mercadopago")} />
+              <input type="radio" name="pay" checked={payment === "mercadopago"} onChange={() => setPayment("mercadopago")} disabled={IS_STATIC} />
               <span className="grow">
                 <span className="title">Tarjeta de crédito, débito o Mercado Pago</span>
-                <span className="sub">Hasta {STORE.installments} cuotas sin interés. Pagás en el entorno seguro de Mercado Pago.</span>
+                <span className="sub">
+                  {IS_STATIC
+                    ? "Disponible cuando la tienda se publique con servidor (versión de vista previa)."
+                    : `Hasta ${STORE.installments} cuotas sin interés. Pagás en el entorno seguro de Mercado Pago.`}
+                </span>
               </span>
             </label>
             <label className="option">
