@@ -2169,7 +2169,7 @@ details.acc ul {
   opacity: 0.55;
   transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.5s ease;
 }
-.bento-trajes::after {
+.bento-tile.has-photo::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -2177,12 +2177,18 @@ details.acc ul {
   background: linear-gradient(0deg, rgba(13, 13, 13, 0.92) 10%, rgba(13, 13, 13, 0.2) 70%);
   pointer-events: none;
 }
-.bento-trajes:hover .bento-photo {
+.bento-tile.has-photo:hover .bento-photo {
   transform: scale(1.08);
 }
-/* El de trajes mantiene la foto: el dorado se aplica como velo */
-.bento-trajes::before {
+/* Con foto: el dorado se aplica como velo */
+.bento-tile.has-photo::before {
   opacity: 0.92;
+}
+.bento-tile.has-photo .bento-mark {
+  display: none;
+}
+.bento-tile.has-photo .bento-photo {
+  opacity: 0.75;
 }
 .bento-mark {
   position: absolute;
@@ -2829,4 +2835,33 @@ details.acc ul {
 }
 .product-card:hover .ph img.photo {
   transform: scale(1.05);
+}
+
+/* Reseñas: tarjetas más bajas y parejas */
+.rv-group {
+  align-items: stretch;
+}
+.rv-card {
+  width: min(340px, 80vw);
+  height: 250px;
+  padding: 22px 24px 24px;
+  gap: 12px;
+}
+.rv-card blockquote {
+  font-size: 16.5px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.rv-avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+}
+@media (max-width: 600px) {
+  .rv-card {
+    height: 240px;
+  }
 }
