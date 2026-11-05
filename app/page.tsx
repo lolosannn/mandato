@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { Reviews } from "@/components/Reviews";
 import { RentalSection } from "@/components/RentalSection";
 import { CollectionGrid } from "@/components/CollectionGrid";
+import { VisitSection } from "@/components/VisitSection";
 import { CalendarIcon, ChatIcon, HangerIcon, PinIcon, ShieldIcon, TruckIcon } from "@/components/Icons";
 import { asset } from "@/lib/asset";
 
@@ -137,25 +138,7 @@ export default function Home() {
       </section>
 
       {/* Local */}
-      <section className="section">
-        <div className="wrap" style={{ display: "flex", flexWrap: "wrap", gap: 48 }}>
-          <div style={{ flex: "1 1 380px", minWidth: 0, display: "flex", flexDirection: "column", gap: 24 }}>
-            <p className="eyebrow">Visitanos</p>
-            <h2 className="display h2">{STORE.address}</h2>
-            <dl className="info-list">
-              <dt>Horarios</dt><dd>{STORE.hours}</dd>
-              <dt>WhatsApp</dt><dd><a href={whatsappLink()} target="_blank" rel="noopener">Escribinos</a></dd>
-              <dt>Instagram</dt><dd><a href={`https://instagram.com/${STORE.instagram}`} target="_blank" rel="noopener">@{STORE.instagram}</a></dd>
-            </dl>
-            <a className="btn btn-line" style={{ alignSelf: "flex-start" }} href={STORE.mapsUrl} target="_blank" rel="noopener">
-              <PinIcon /> Cómo llegar
-            </a>
-          </div>
-          <div style={{ flex: "1.4 1 460px", minWidth: 0 }}>
-            <iframe className="map" title={`Mapa: ${STORE.addressFull}`} src={STORE.mapsEmbed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-          </div>
-        </div>
-      </section>
+      <VisitSection />
     </>
   );
 }

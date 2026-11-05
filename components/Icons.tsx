@@ -51,3 +51,9 @@ export const ArrowLeft = ({ size = 18 }: P) => (
 export const ArrowRight = ({ size = 18 }: P) => (
   <svg {...base(size)}><path d="M9 6l6 6-6 6" /></svg>
 );
+export const ClockIcon = ({ size = 18 }: P) => (
+  <svg {...base(size)}><circle cx="12" cy="12" r="8.5" /><path d="M12 7.5V12l3 2" /></svg>
+);
+export const InstagramIcon = ({ size = 18 }: P) => (
+  <svg {...base(size)}><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none" /></svg>
+);
