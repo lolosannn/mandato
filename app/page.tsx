@@ -6,6 +6,7 @@ import { Reviews } from "@/components/Reviews";
 import { RentalSection } from "@/components/RentalSection";
 import { CollectionGrid } from "@/components/CollectionGrid";
 import { VisitSection } from "@/components/VisitSection";
+import { HeroSlider } from "@/components/HeroSlider";
 import { CalendarIcon, ChatIcon, HangerIcon, PinIcon, ShieldIcon, TruckIcon } from "@/components/Icons";
 import { asset } from "@/lib/asset";
 
@@ -15,8 +16,8 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="split">
-        <div className="split-body">
+      <section className="split hero">
+        <div className="split-body hero-copy">
           <p className="eyebrow">Sastrería y moda masculina · Desde {STORE.since}</p>
           <h1 className="display h1">
             Tu mejor versión empieza por <em>cómo te presentás.</em>
@@ -26,16 +27,17 @@ export default function Home() {
             alquiler, con el asesoramiento de quienes conocen el oficio.
           </p>
           <div className="actions">
-            <Link className="btn btn-gold" href="/tienda">Ver la colección</Link>
+            <Link className="btn btn-gold" href="/coleccion">Ver la colección</Link>
             <Link className="btn btn-line" href="/turnos"><CalendarIcon /> Sacar turno</Link>
           </div>
         </div>
-        <div className="split-media" style={{ minHeight: 560 }}>
-          <img src={asset("/img/local-noche.webp")} alt="Fachada del local Mandato iluminada de noche" fetchPriority="high" style={{ objectPosition: "center 40%" }} />
-          <div className="hero-badge">
-            <strong>{STORE.years}</strong>
-            <span>años de trayectoria<br />en Monte Grande</span>
-          </div>
+        <div className="split-media hero-media">
+          <HeroSlider>
+            <div className="hero-badge">
+              <strong>{STORE.years}</strong>
+              <span>años de trayectoria<br />en Monte Grande</span>
+            </div>
+          </HeroSlider>
         </div>
       </section>
 
