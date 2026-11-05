@@ -49,7 +49,7 @@ export function RentalSection() {
     <section ref={ref} className={`rent${visible ? " is-in" : ""}`} aria-labelledby="rent-title">
       <div className="rent-hero">
         <div className="rent-media">
-          <img src={asset("/img/local-vidriera.webp")} alt="Vidriera del local Mandato con trajes en exhibición" loading="lazy" />
+          <img src={asset("/img/alquiler-gala.webp")} alt="Hombre con traje azul de tres piezas llegando a una gala en un palacio iluminado" loading="lazy" />
           <div className="rent-badge">
             <strong>Prueba y ajuste</strong>
             <span>incluidos en el alquiler</span>

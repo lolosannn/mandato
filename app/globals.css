@@ -1821,7 +1821,7 @@ details.acc ul {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 55%;
+  object-position: center 30%;
   animation: rent-zoom 18s ease-in-out infinite alternate;
 }
 .rent-media::after {
@@ -2799,5 +2799,19 @@ details.acc ul {
 @media (max-width: 760px) {
   .hero-arrow {
     top: 24%;
+  }
+}
+@media (max-width: 700px) {
+  .rent-badge {
+    left: 12px;
+    bottom: 12px;
+    padding: 9px 13px;
+  }
+  .rent-badge strong {
+    font-size: 15px;
+  }
+  .rent-badge span {
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
   }
 }
